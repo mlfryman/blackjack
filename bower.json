@@ -1,8 +1,8 @@
 {
-  "name": "hapi-auth",
+  "name": "blackjack",
   "version": "0.0.0",
   "authors": [
-    "Chyld Medford <chyld.medford@gmail.com>"
+    "Melanie Fryman <melanie@frymanet.com>"
   ],
   "main": "client/index.js",
   "license": "MIT",

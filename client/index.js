@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  angular.module('hapi-auth', ['ui.router', 'LocalForageModule'])
+  angular.module('blackjack', ['ui.router', 'LocalForageModule'])
     .config(['$stateProvider', '$urlRouterProvider', '$localForageProvider', function($stateProvider, $urlRouterProvider, $localForageProvider){
       $urlRouterProvider.otherwise('/');
 
@@ -12,7 +12,7 @@
         .state('rooms',      {url:'/rooms',    templateUrl:'/views/rooms/rooms.html',      abstract:true})
         .state('rooms.list', {url:'',          templateUrl:'/views/rooms/rooms_list.html', controller:'RoomsListCtrl'});
 
-      $localForageProvider.config({name:'hapi-auth', storeName:'cache', version:1.0});
+      $localForageProvider.config({name:'blackjack', storeName:'cache', version:1.0});
     }])
     .run(['$rootScope', '$http', function($rootScope, $http){
       $http.get('/status').then(function(response){
