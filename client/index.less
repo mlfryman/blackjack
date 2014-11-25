@@ -9,6 +9,10 @@
   display: none !important;
 }
 
+.error {
+  border: 2px solid @RED !important;
+}
+
 #avatarlink{
   height: 45px;
 }
@@ -21,6 +25,16 @@
 #messages{
   height: 300px;
   overflow: scroll;
+}
+
+#rooms{
+  width: 100%;
+  .avatar{
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    display: inline-block;
+  }
 }
 
 .chat {

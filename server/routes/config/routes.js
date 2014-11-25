@@ -8,7 +8,7 @@ module.exports = [
   {method: 'DELETE', path: '/logout',          config: require('../definitions/users/delete_logout')},
   {method: 'GET',    path: '/status',          config: require('../definitions/users/get_status')},
   //- rooms routes
-  {method: 'POST',   path: '/rooms/create',    config: require('../definitions/rooms/post_create')},
-  {method: 'POST',   path: '/rooms/join',      config: require('../definitions/rooms/post_join')},
-  {method: 'GET',    path: '/rooms/allrooms',  config: require('../definitions/rooms/get_all_rooms')}
+  {method: 'POST',   path: '/rooms',           config: require('../definitions/rooms/post_create')},
+  {method: 'GET',    path: '/rooms',           config: require('../definitions/rooms/get_all_rooms')},
+  {method: 'POST',   path: '/rooms/{name}',    config: require('../definitions/rooms/post_join')}
 ];

@@ -4,16 +4,16 @@
   angular.module('blackjack')
     .factory('Room', ['$http', function($http){
 
-      function join(room){
-        return $http.post('/join', room);
-      }
-
       function create(room){
-        return $http.post('/create', room);
+        return $http.post('/rooms', room);
       }
 
-      function getRooms(){
-        return $http.get('/logout');
+      function getRooms(room){
+        return $http.get('/rooms');
+      }
+
+      function join(room){
+        return $http.post('/rooms/' + room.name, {password: room.password});
       }
 
       return {join:join, create:create, getRooms:getRooms};

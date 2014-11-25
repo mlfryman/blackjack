@@ -12,6 +12,7 @@ io.on('connection', require('./sockets/connection'));
 
 mongoose.connection.once('open', function(){
   server.pack.register(plugins, function(){
+    //- "true" means that user MUST be authenticated for every route unless told otherwise.
     server.auth.strategy('session', 'cookie', true, authentication);
     server.route(routes);
     server.start(function(){

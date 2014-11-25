@@ -2,7 +2,6 @@
 
 var mongoose   = require('mongoose'),
     bcrypt     = require('bcrypt'),
-    //- User       = require('../user/user'),
     RoomSchema = null,
     Room       = null;
 
@@ -13,25 +12,23 @@ RoomSchema = new mongoose.Schema({
   createdAt: {type: Date, required: true, default: Date.now}
 });
 
-RoomSchema.statics.join = function(obj, cb){
-  Room.findOne({name: obj.name}, function(err, room){
-    if(!room){
+RoomSchema.methods.encrypt = function(){
+  this.password = bcrypt.hashSync(this.password, 10);
+};
+
+RoomSchema.statics.decrypt = function(obj, cb){
+  Room.findOne({name: obj.name}, function(err, foundRoom){
+    if(!foundRoom){
      return cb();
     }
 
-    var isGood = bcrypt.compareSync(obj.password, room.password);
+    var isGood = bcrypt.compareSync(obj.password, foundRoom.password);
 
     if(!isGood){
       return cb();
     }
 
-    cb(room);
-  });
-};
-
-RoomSchema.statics.allRooms = function(cb){
-  this.find({}, function(err, rooms){
-    cb(err, rooms);
+    cb(foundRoom._id);
   });
 };
 
