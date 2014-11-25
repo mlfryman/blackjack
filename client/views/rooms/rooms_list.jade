@@ -6,10 +6,12 @@
     .row
       .small-12.columns
         h3 Create a Room
-          //- .small-9.columns
-          //-   input.radius(type='text', ng-model='')
-          //- .small-3.columns
-          //-   button.tiny.radius(ng-click='') Add Room
+        .small-5.columns
+          input.radius(type='text', ng-model='room.name', placeholder='room name')
+        .small-4.columns
+          input.radius(type='text', ng-model='room.password', placeholder='room password')
+        .small-3.columns
+          button.tiny.radius(ng-click='createRoom()') Add Room
     .row
       .small-12.columns
         h3 Room List
