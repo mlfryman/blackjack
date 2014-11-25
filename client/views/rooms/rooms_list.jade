@@ -1,15 +1,24 @@
-h1 ROOMS
+.section-header.nine.columns.centered
+  h1 ROOMS
 
 .row
-   .small-8.columns
-      .row
-         .small-12.columns
-            h3 Create a Room
-      .row
-         .small-12.columns
-            h3 Room List
-   .small-4.columns
-      h3 Chat it Up!
-      #messages.panel.callout.radius
-      input(type='text', ng-model='message')
-      button.success.tiny.radius(ng-click='chat(message)') Send Message
+  .small-6.columns
+    .row
+      .small-12.columns
+        h3 Create a Room
+          //- .small-9.columns
+          //-   input.radius(type='text', ng-model='')
+          //- .small-3.columns
+          //-   button.tiny.radius(ng-click='') Add Room
+    .row
+      .small-12.columns
+        h3 Room List
+
+  .small-6.columns
+    h3 Chat
+    #messages.panel.callout.radius
+    .row.collapse
+      .small-10.columns
+        input.radius(type='text', ng-model='message', autofocus)
+      .small-2.columns
+        a.button.success.postfix.text-center(ng-click='chat(message)') Send
