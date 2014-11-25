@@ -11,7 +11,7 @@ var mongoose   = require('mongoose'),
 UserSchema = new mongoose.Schema({
   username:  {type: String, required: true, validate: [usernameV, 'username length'], unique: true},
   password:  {type: String, required: true, validate: [passwordV, 'password length']},
-  avatar:    {type: String, required: true},
+  avatar:    {type: String, required: true, default: '/../../client/assets/img/default-avatar.jpg'},
   createdAt: {type: Date,  required: true, default: Date.now}
 });
 
@@ -20,13 +20,13 @@ UserSchema.methods.encrypt = function(){
 };
 
 UserSchema.methods.download = function(){
-  var assetDir = __dirname + '/../../assets/' + this._id,
+  var assetDir = __dirname + '/../../assets/avatars' + this._id,
       ext      = path.extname(this.avatar);
 
   fs.mkdirSync(assetDir);
 
   request(this.avatar).pipe(fs.createWriteStream(assetDir + '/avatar' + ext));
-  this.avatar = '/assets/' + this._id + '/avatar' + ext;
+  this.avatar = '/assets/avatars' + this._id + '/avatar' + ext;
 };
 
 UserSchema.statics.login = function(obj, cb){
