@@ -19,9 +19,10 @@ module.exports = {
   handler: function(request, reply){
     var user = new User(request.payload);
     user.encrypt();
-    user.download();
-    user.save(function(err){
-      reply().code(err ? 401 : 200);
+    user.download(function(){
+      user.save(function(err){
+        reply().code(err ? 401 : 200);
+      });
     });
   }
 };
