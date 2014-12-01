@@ -24,7 +24,7 @@
             th Password
             th Join
           tbody
-            tr(ng-repeat='room in rooms| orderBy:"createdAt":true')
+            tr(ng-repeat='room in rooms | orderBy:"createdAt":true')
               td: div.avatar(style='background-image:url("{{room.avatar}}")')
               td {{room.name}}
               td
@@ -33,10 +33,15 @@
                 a.button.tiny.radius(ng-click='join(room)') Join
 
   .small-6.columns
-    h3 Chat
-    #messages.panel.callout.radius
-    .row.collapse
-      .small-10.columns
-        input.radius(type='text', ng-model='message', autofocus)
-      .small-2.columns
-        a.button.success.postfix.text-center(ng-click='chat(message)') Send
+      h3 Global Chat
+      #messages.panel.callout.radius
+        .chat(ng-repeat='message in messages')
+          .chat-avatar
+            img(src='{{message.avatar}}')
+          {{message.body}}
+          hr
+      .row.collapse
+        .small-10.columns
+          input.radius(type='text', ng-model='message', autofocus)
+        .small-2.columns
+          a.button.success.postfix.text-center(ng-click='chat(message)') Send

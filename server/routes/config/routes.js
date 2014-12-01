@@ -10,5 +10,7 @@ module.exports = [
   //- rooms routes
   {method: 'POST',   path: '/rooms',           config: require('../definitions/rooms/post_create')},
   {method: 'GET',    path: '/rooms',           config: require('../definitions/rooms/get_all_rooms')},
-  {method: 'POST',   path: '/rooms/{name}',    config: require('../definitions/rooms/post_join')}
+  {method: 'POST',   path: '/rooms/{name}',    config: require('../definitions/rooms/post_join')},
+  {method: 'get',    path: '/rooms/{roomId}', config: require('../definitions/rooms/get_rooms_find')}
+
 ];

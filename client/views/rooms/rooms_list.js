@@ -10,13 +10,14 @@
       $scope.chat = function(msg){
         socket.emit('globalChat', {
             avatar: $rootScope.rootuser.avatar,
+            //- or content:msg;
             body: msg
         });
         $scope.message = '';
       };
 
       $scope.createRoom = function(room){
-        Room.create($scope.room).then(function(response){
+        Room.create(room).then(function(response){
           toastr.success('Room successfully created.');
           $scope.rooms.push(response.data);
           $scope.room = {};
@@ -42,8 +43,14 @@
         $scope.rooms = response.data.rooms;
       });
 
-      socket.on('bGlobalChat', function(message){
-        $('#messages').append('<div class="chat" ><img class="chat-avatar", src="'+ message.avatar +'"/>' + message.body + '</div><hr />');
+      //- turning off globalChat listener restricts to only 1 event listener for globalChat at a time
+      socket.off('globalChat');
+      socket.on('globalChat', function(data){
+        $scope.messages.unshift(data);
+        $scope.messages = $scope.messages.slice(0, 100);
+        $scope.message = null;
+        $('#message').focus();
+        $scope.$digest();
       });
 
   //- last brackets

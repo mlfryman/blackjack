@@ -1,2 +1,23 @@
 .section-header.nine.columns.centered
-  h1 ROOMS DETAIL
+  h1 {{room.name}}
+  img(ng-src='{{room.creator.avatar}}')
+
+.row
+  .small-6.columns
+    .row
+      .small-12.columns
+        h3 Play a Game
+
+  .small-6.columns
+      h3 Room Chat
+      #messages.panel.callout.radius
+        .chat(ng-repeat='message in messages')
+          .chat-avatar
+            img(src='{{message.avatar}}')
+          {{message.body}}
+          hr
+      .row.collapse
+        .small-10.columns
+          input.radius(type='text', ng-model='message', autofocus)
+        .small-2.columns
+          a.button.success.postfix.text-center(ng-click='chat(message)') Send
