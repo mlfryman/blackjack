@@ -4,6 +4,7 @@
   angular.module('blackjack')
     .controller('RoomsDetailCtrl', ['$rootScope', '$scope', '$state', 'Room', 'Game', function($rootScope, $scope, $state, Room, Game){
       $scope.messages = [];
+      //- made players an object instead of an array so that you don't have to loop over all the players.
 
       //- know if the game is yours via the cookie passed along with roomId
       Game.readyNewGame($state.params.roomId).then(function(){

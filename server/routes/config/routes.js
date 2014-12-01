@@ -13,5 +13,5 @@ module.exports = [
   {method: 'GET',    path: '/rooms',           config: require('../definitions/rooms/get_all_rooms')},
   {method: 'POST',   path: '/rooms/{name}',    config: require('../definitions/rooms/post_join')},
   {method: 'GET',    path: '/rooms/{roomId}',  config: require('../definitions/rooms/get_rooms_find')},
-  {method: 'GET',    path: '/rooms/{roomId}/readyNewGame',  config: require('../definitions/rooms/get_rooms_readynewgame')}
+  // {method: 'GET',    path: '/rooms/{roomId}/readyNewGame',  config: require('../definitions/rooms/get_rooms_readynewgame')}
 ];

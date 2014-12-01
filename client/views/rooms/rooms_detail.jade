@@ -8,7 +8,12 @@
       .small-12.columns
         h3 Play a Game
         //- if you created the room, show newGame button / if not created room, hide newGame button
-        button.tiny.radius(ng-click='newGame()')
+        button.tiny.radius(ng-click='newGame()',    ng-show='readyNewGame') New Game
+        button.tiny.radius(ng-click='joinGame()',   ng-show='readyJoinGame') Join Game
+        button.tiny.radius(ng-click='startGame()',  ng-show='readyJoinGame') Start Game
+        button.tiny.radius(ng-click='hit()',        ng-show='isPlaying') Hit
+        button.tiny.radius(ng-click='hold()',       ng-show='isPlaying') Hold
+        //- you can ng-repeat over object's properties, so p in players is NOT an array, but an object.
 
   .small-6.columns
       h3 Room Chat
