@@ -37,7 +37,7 @@
       #messages.panel.callout.radius
         .chat(ng-repeat='message in messages')
           .chat-avatar
-            img(src='{{message.avatar}}')
+            img(src={{message.avatar}})
           {{message.body}}
           hr
       .row.collapse

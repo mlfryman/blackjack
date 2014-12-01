@@ -17,16 +17,21 @@
 
       $localForageProvider.config({name:'blackjack', storeName:'cache', version:1.0});
     }])
+    
     .run(['$rootScope', '$http', function($rootScope, $http){
+      window.socket = io.connect();
+      window.socket.on('online', function(){
+        if($rootScope.rootuser && socket.connected){
+          $http.put('/users/' + $rootScope.rootuser._id, {socketId:socket.io.engine.id});
+          $rootScope.online = true;
+          $rootScope.$apply();
+        }
+      });
+
       $http.get('/status').then(function(response){
         $rootScope.rootuser = response.data;
       }, function(){
         $rootScope.rootuser = null;
-      });
-
-      window.socket = io.connect('/');
-      window.socket.on('online', function(){
-        $rootScope.$broadcast('online');
       });
     }]);
 })();

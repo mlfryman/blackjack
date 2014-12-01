@@ -10,7 +10,6 @@
       $scope.chat = function(msg){
         socket.emit('globalChat', {
             avatar: $rootScope.rootuser.avatar,
-            //- or content:msg;
             body: msg
         });
         $scope.message = '';

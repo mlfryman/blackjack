@@ -2,7 +2,16 @@
   'use strict';
 
   angular.module('blackjack')
-    .factory('User', ['$http', function($http){
+    .factory('User', ['$rootScope', '$http', function($rootScope, $http){
+
+      $rootScope.$watch('rootuser', function(user){
+        if(user){
+          socket.connect();
+        }else{
+          socket.disconnect();
+          $rootScope.online = false;
+        }
+      });
 
       function register(user){
         return $http.post('/register', user);
