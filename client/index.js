@@ -14,10 +14,8 @@
         //- regex url validator that can only be lowercase a-f, numbers 0-9, & 24 characters long
         .state('rooms.detail', {url:'/{roomId:[a-f0-9]{24}}', templateUrl:'/views/rooms/rooms_detail.html', controller:'RoomsDetailCtrl'});
 
-
       $localForageProvider.config({name:'blackjack', storeName:'cache', version:1.0});
     }])
-    
     .run(['$rootScope', '$http', function($rootScope, $http){
       window.socket = io.connect();
       window.socket.on('online', function(){

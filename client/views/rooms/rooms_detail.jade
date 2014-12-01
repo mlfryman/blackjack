@@ -7,13 +7,15 @@
     .row
       .small-12.columns
         h3 Play a Game
+        //- if you created the room, show newGame button / if not created room, hide newGame button
+        button.tiny.radius(ng-click='newGame()')
 
   .small-6.columns
       h3 Room Chat
       #messages.panel.callout.radius
         .chat(ng-repeat='message in messages')
           .chat-avatar
-            img(src={{message.avatar}})
+            img(ng-src='{{message.avatar}}')
           {{message.body}}
           hr
       .row.collapse

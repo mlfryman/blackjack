@@ -2,8 +2,13 @@
   'use strict';
 
   angular.module('blackjack')
-    .controller('RoomsDetailCtrl', ['$rootScope', '$scope', '$state', 'Room', function($rootScope, $scope, $state, Room){
+    .controller('RoomsDetailCtrl', ['$rootScope', '$scope', '$state', 'Room', 'Game', function($rootScope, $scope, $state, Room, Game){
       $scope.messages = [];
+
+      //- know if the game is yours via the cookie passed along with roomId
+      Game.readyNewGame($state.params.roomId).then(function(){
+        $scope.readyNewGame = true;
+      });
 
       Room.find($state.params.roomId).then(function(response){
         $scope.room = response.data;
@@ -15,7 +20,7 @@
       $scope.chat = function(msg){
         //- use debugger to find which state you are in & how to find the roomId.
         //- debugger;
-        //- Even though $state is global, it won't capture it unless you use it.  It is defined once you use it.
+        //- Even though $state is global, it won't capture it unless you use it.  $state is defined once you use it.
         //- console.log($state);
         socket.emit('roomChat', {
           //- roomId comes from UIRouter
