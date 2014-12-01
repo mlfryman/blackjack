@@ -31,6 +31,7 @@
       socket.on('roomChat', function(data){
         $scope.messages.unshift(data);
         $scope.messages = $scope.messages.slice(0, 100);
+        //- set message to null once it comes back, otherwise you have no way to verify that the message was sent.
         $scope.message = null;
         $('#message').focus();
         $scope.$digest();

@@ -8,11 +8,7 @@
       $scope.rooms = [];
 
       $scope.chat = function(msg){
-        socket.emit('globalChat', {
-            avatar: $rootScope.rootuser.avatar,
-            body: msg
-        });
-        $scope.message = '';
+        socket.emit('globalChat', {avatar:$rootScope.rootuser.avatar, body:msg});
       };
 
       $scope.createRoom = function(room){
